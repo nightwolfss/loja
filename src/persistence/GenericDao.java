@@ -4,14 +4,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jdt.internal.compiler.ast.Clinit;
-
 import entity.Cliente;
 import entity.Produto;
 import entity.Usuario;
 
 public class GenericDao extends Dao {
-
+	private List listaProdutos; 
 	public String gravarUsuario(Usuario usu) {
 
 		try {
@@ -236,4 +234,8 @@ public class GenericDao extends Dao {
 		return listaProd;
 	}
 	
+	public List<Produto> getListaProdutos(){
+		listaProdutos = new GenericDao().consultarTodosProdutos();
+		return listaProdutos;
+	}
 }

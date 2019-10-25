@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:useBean id="contato" class="persistence.GenericDao"/>
+<jsp:useBean id="dao" class="persistence.GenericDao" scope="request"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,10 +21,14 @@
 	</div>
 </form>
 
-<c:forEach var="var" items="${msg}">
-	var;
+<br/>
+<hr/>
+<table border="1">
+<tr><td>id</td><td>Nome</td><td>Valor</td><td>Descrição</td></tr>
+<c:forEach var="var" items="${dao.listaProdutos}">
+	<tr><td>${var.idProduto}</td><td>${var.nomeProduto}</td><td>${var.valor}</td><td>${var.descricaoProduto}</td></tr>
 </c:forEach>
-
+</table>
 ${msg}
 
 </body>
