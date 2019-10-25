@@ -9,7 +9,8 @@ import entity.Produto;
 import entity.Usuario;
 
 public class GenericDao extends Dao {
-	private List listaProdutos; 
+	private List listaProdutos;
+	private List listaUsuarios; 
 	public String gravarUsuario(Usuario usu) {
 
 		try {
@@ -68,6 +69,7 @@ public class GenericDao extends Dao {
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
+				usu = new Usuario();
 				usu.setIdUsuario(rs.getInt("id"));
 				usu.setLogin(rs.getString("login"));
 				usu.setNome(rs.getString("nome"));
@@ -80,6 +82,11 @@ public class GenericDao extends Dao {
 			System.out.println("Erro ao gerar lista de usuarios: " + e.getMessage());
 		}
 		return listaUsu;
+	}
+	
+	public List<Usuario> getListaUsuarios(){
+		listaUsuarios = new GenericDao().consultarTodosUsuarios();
+		return listaUsuarios;
 	}
 	
 	public String gravarCliente(Cliente cli) {
