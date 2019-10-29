@@ -77,7 +77,10 @@ $("#enviar").click(function(){
 </div>
 <p id="conf">${msg}</p>
 
-<c:forEach var="var" items="${dao.listaUsuarios}"></c:forEach>
-	${var}
+<c:forEach var="var" items="${dao.listaUsuarios}">
+
+${var}
+</c:forEach>
+	
 </body>
 </html>
