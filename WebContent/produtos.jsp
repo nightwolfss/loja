@@ -20,21 +20,47 @@
 <h1>Cadastro de Produtos</h1>
 <hr/>
 <form action="Controller?cmd=cadproduto" method="post">
-	
-		<table>
-			<tr><td>Nome:</td><td><input class="form-control form-control-sm" type="text" name="nome" id="nome" required="required"></td></tr>
-			<tr><td>Valor:</td><td><input class="form-control form-control-sm" type="text" name="valor" required="required"></td></tr>
-			<tr><td>Descrição:</td><td><textarea class="form-control form-control-sm" cols=30 rows="5" name="descricao" id="descricao"></textarea></td></tr>
-			<tr><td></td><td align="right"><input class="btn btn-warning" type="submit" value="Cadastrar"  id="enviar"></td></tr>
-		</table>
-</form>
+
+			<table>
+				<tr>
+					<td>Nome:</td>
+					<td><input class="form-control form-control-sm" type="text"
+						name="nome" id="nome" required="required"></td>
+				</tr>
+				<tr>
+					<td>Valor:</td>
+					<td><input class="form-control form-control-sm" type="text"
+						name="valor" required="required"></td>
+				</tr>
+				<tr>
+					<td>Tipo:</td>
+					<td><select id="tipo" name="tipo"><option value="hamburger">hamburguer</option>
+							<option value="hamburger">hamburguer</option>
+							<option value="bebidas">bebidas</option>
+							<option value="sucos">sucos</option>
+							<option value="promo">promoção</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Descrição:</td>
+					<td><textarea class="form-control form-control-sm" cols=30
+							rows="5" name="descricao" id="descricao"></textarea></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td align="right"><input class="btn btn-warning" type="submit"
+						value="Cadastrar" id="enviar"></td>
+				</tr>
+			</table>
+		</form>
 
 <br/>
 <hr/>
 <table class="table table-sm table-striped table-dark" border="1">
-<tr><th>id</th><th>Nome</th><th>Valor</th><th>Descrição</th></tr>
+<tr><th>id</th><th>Nome</th><th>Valor</th><th>Tipo</th><th>Descrição</th></tr>
 <c:forEach var="var" items="${dao.listaProdutos}">
-	<tr><td>${var.idProduto}</td><td>${var.nomeProduto}</td><td>${var.valor}</td><td>${var.descricaoProduto}</td></tr>
+	<tr><td>${var.idProduto}</td><td>${var.nomeProduto}</td><td>${var.valor}</td><td>${var.tipoProduto}</td><td>${var.descricaoProduto}</td></tr>
 </c:forEach>
 </table>
 </div>

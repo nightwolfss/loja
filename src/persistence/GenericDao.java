@@ -10,6 +10,7 @@ import entity.Usuario;
 
 public class GenericDao extends Dao {
 	private List listaProdutos;
+	private List listaProdutosPorTipo;
 	private List listaUsuarios; 
 	public String gravarUsuario(Usuario usu) {
 
@@ -169,10 +170,11 @@ public class GenericDao extends Dao {
 
 		try {
 			abrirConexao();
-			stmt = con.prepareStatement("insert into produto (nome, descricao, valor) values (?,?,?)");
+			stmt = con.prepareStatement("insert into produto (nome, tipo, descricao, valor) values (?,?,?,?)");
 			stmt.setString(1, prod.getNomeProduto());
-			stmt.setString(2, prod.getDescricaoProduto());
-			stmt.setDouble(3, prod.getValor());
+			stmt.setString(2, prod.getTipoProduto());
+			stmt.setString(3, prod.getDescricaoProduto());
+			stmt.setDouble(4, prod.getValor());
 			stmt.execute();
 			fecharConexao();
 
@@ -202,6 +204,7 @@ public class GenericDao extends Dao {
 				prod = new Produto();
 				prod.setIdProduto(rs.getInt("id"));
 				prod.setNomeProduto(rs.getString("nome"));
+				prod.setTipoProduto(rs.getString("tipo"));
 				prod.setValor(rs.getDouble("valor"));
 				prod.setDescricaoProduto(rs.getString("descricao"));
 				
@@ -216,7 +219,39 @@ public class GenericDao extends Dao {
 		}
 
 	}
+	
 
+	public List<Produto> consultarTodosProdutosPorTipo(String tipo) {
+		abrirConexao();
+		Produto prod= null;
+		ArrayList<Produto> listaProdPorTipo = new ArrayList<Produto>();
+		try {
+			stmt = con.prepareStatement("select * from produto where tipo = ?");
+			stmt.setString(1, tipo);
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				prod = new Produto();
+				prod.setIdProduto(rs.getInt("id"));
+				prod.setNomeProduto(rs.getString("nome"));
+				prod.setTipoProduto(rs.getString("tipo"));
+				prod.setValor(rs.getDouble("valor"));
+				prod.setDescricaoProduto(rs.getString("descricao"));
+				
+				listaProdPorTipo.add(prod);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Erro ao gerar lista de usuarios: " + e.getMessage());
+		}
+		return listaProdPorTipo;
+	}
+	
+	public List<Produto> getListaProdutosPorTipo(){
+		listaProdutosPorTipo = new GenericDao().consultarTodosProdutosPorTipo(tipo);
+		return listaProdutosPorTipo;
+	}
+	
 	public List<Produto> consultarTodosProdutos() {
 		abrirConexao();
 		Produto prod= null;
@@ -229,6 +264,7 @@ public class GenericDao extends Dao {
 				prod = new Produto();
 				prod.setIdProduto(rs.getInt("id"));
 				prod.setNomeProduto(rs.getString("nome"));
+				prod.setTipoProduto(rs.getString("tipo"));
 				prod.setValor(rs.getDouble("valor"));
 				prod.setDescricaoProduto(rs.getString("descricao"));
 				

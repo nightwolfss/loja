@@ -61,6 +61,7 @@ public class Controller extends HttpServlet {
 		if(var.equalsIgnoreCase("cadproduto")) {
 			Produto produto = new Produto();
 			produto.setNomeProduto(request.getParameter("nome"));
+			produto.setTipoProduto(request.getParameter("tipo"));
 			produto.setValor(Double.parseDouble(request.getParameter("valor")));
 			produto.setDescricaoProduto(request.getParameter("descricao"));
 			

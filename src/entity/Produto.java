@@ -4,6 +4,7 @@ public class Produto {
 
 	private Integer idProduto;
 	private String nomeProduto;
+	private String tipoProduto;
 	private String descricaoProduto;
 	private Double valor;
 	
@@ -11,10 +12,11 @@ public class Produto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Produto(Integer idProduto, String nomeProduto, String descricaoProduto, Double valor) {
+	public Produto(Integer idProduto, String nomeProduto, String tipoProduto, String descricaoProduto, Double valor) {
 		super();
 		this.idProduto = idProduto;
 		this.nomeProduto = nomeProduto;
+		this.tipoProduto = tipoProduto;
 		this.descricaoProduto = descricaoProduto;
 		this.valor = valor;
 	}
@@ -35,6 +37,14 @@ public class Produto {
 		this.nomeProduto = nomeProduto;
 	}
 
+	public String getTipoProduto() {
+		return tipoProduto;
+	}
+
+	public void setTipoProduto(String tipoProduto) {
+		this.tipoProduto = tipoProduto;
+	}
+
 	public String getDescricaoProduto() {
 		return descricaoProduto;
 	}
@@ -47,14 +57,14 @@ public class Produto {
 		return valor;
 	}
 
-	public void setValor(Double valorTotal) {
-		this.valor = valorTotal;
+	public void setValor(Double valor) {
+		this.valor = valor;
 	}
 
 	@Override
 	public String toString() {
-		return "Produto [idProduto=" + idProduto + ", nomeProduto=" + nomeProduto + ", descricaoProduto="
-				+ descricaoProduto + ", valor=" + valor + "]";
+		return "Produto [idProduto=" + idProduto + ", nomeProduto=" + nomeProduto + ", tipoProduto=" + tipoProduto
+				+ ", descricaoProduto=" + descricaoProduto + ", valor=" + valor + "]";
 	}
-	
+
 }

@@ -3,7 +3,7 @@ package entity;
 public class Pedido {
 	
 	private Integer idPedido;
-	private String tipoDePedido;
+	private String tipoDePedido; //loja ou entrega
 	private Double valorTotal;
 	private String horaPedido;
 	private Produto listaDeProdutos;
